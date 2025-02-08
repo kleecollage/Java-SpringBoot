@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Layout</title>
@@ -15,6 +16,11 @@
         <a th:href="@{/(lang=en)}">EN</a> |
         <a th:href="@{/(lang=es)}">ES</a> |
         <span>[[ #{layout.footer} ]] <a href="https://www.google.com" target="_blank">&copy;GlobalMentoring.com.mx</a></span>
+        <form method="post" th:action="@{/logout}">
+            <b>User: </b> <span sec:authentication="name">USERNAME LOGGED</span> |
+            <b>Roles: </b> <span sec:authentication="principal.authorities">ROLES</span>|
+            <a href="#" onclick="this.parentNode.submit()">Logout</a>
+        </form>
     </div>
 </footer>
 </body>

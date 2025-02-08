@@ -2,10 +2,10 @@ package mx.com.gm.web;
 
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
-import mx.com.gm.dao.IPersonDao;
 import mx.com.gm.domain.Person;
 import mx.com.gm.service.IPersonService;
-import mx.com.gm.service.PersonServiceImpl;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -24,8 +24,10 @@ public class InitController {
     }
 
     @GetMapping("/")
-    public String init(Model model) {
+    public String init(Model model, @AuthenticationPrincipal User user) {
         log.info("Executing Controller Spring MVC");
+        log.info("User Logged: {}", user);
+
         var persons = personService.listPersons();
         // var persons = new ArrayList<Person>();
         model.addAttribute("persons", persons);

@@ -5,8 +5,8 @@
     <title>Index</title>
 </head>
 <body>
-<h1>Home</h1>
-<br />
+<h1>Home</h1><br />
+<a th:href="@{/add}">Add New Person</a> <hr />
 <div th:if="${persons != null and !persons.empty}">
 <table border="1">
     <tr>
@@ -14,12 +14,19 @@
         <th>Surname</th>
         <th>Email</th>
         <th>Phone</th>
+        <th>Actions</th>
     </tr>
     <tr th:each="person : ${persons}">
         <td th:text="${person.name}"></td>
         <td th:text="${person.surname}"></td>
-        <td th:text="${person.email}">empty</td>
+        <td th:text="${person.email}"></td>
         <td th:text="${person.phone}"></td>
+        <td>
+            <!--     PARAMETER CONCATENATION       -->
+            <a th:href="@{/edit/} + ${person.idPerson}" th:text="Edit"></a> |
+            <!--     QUERY PARAMETER       -->
+            <a th:href="@{/delete(idPerson=${person.idPerson})}" th:text="Delete"></a>
+        </td>
     </tr>
 </table>
 </div>

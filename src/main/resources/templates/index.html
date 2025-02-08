@@ -6,15 +6,15 @@
 </head>
 <body>
 <header th:replace="layout/layout :: header"></header>
-<a th:href="@{/add}">Add New Person</a> <hr />
+<a th:href="@{/add}" th:text="#{person.add}">CREATE PERSON</a> <hr />
 <div th:if="${persons != null and !persons.empty}">
 <table border="1">
     <tr>
-        <th>Name</th>
-        <th>Surname</th>
-        <th>Email</th>
-        <th>Phone</th>
-        <th>Actions</th>
+        <th th:text="#{person.name}"></th>
+        <th th:text="#{person.surname}"></th>
+        <th th:text="#{person.email}"></th>
+        <th th:text="#{person.phone}"></th>
+        <th th:text="#{form.actions}"></th>
     </tr>
     <tr th:each="person : ${persons}">
         <td th:text="${person.name}"></td>
@@ -23,15 +23,15 @@
         <td th:text="${person.phone}"></td>
         <td>
             <!--     PARAMETER CONCATENATION       -->
-            <a th:href="@{/edit/} + ${person.idPerson}" th:text="Edit"></a> |
+            <a th:href="@{/edit/} + ${person.idPerson}" th:text="#{action.edit}">EDITION</a> |
             <!--     QUERY PARAMETER       -->
-            <a th:href="@{/delete(idPerson=${person.idPerson})}" th:text="Delete"></a>
+            <a th:href="@{/delete(idPerson=${person.idPerson})}" th:text="#{action.delete}">DELETE</a>
         </td>
     </tr>
 </table>
 </div>
-<div th:if="${persons == null or persons.empty}">
-    The list is empty
+<div th:if="${persons == null or persons.empty}" th:text="#{form.empty}">
+    EMPTY LIST
 </div>
 <footer th:replace="layout/layout :: footer"></footer>
 </body>

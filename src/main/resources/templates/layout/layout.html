@@ -6,11 +6,16 @@
 </head>
 <body>
 <header th:fragment="header">
-    <h1>Clients Control</h1>
+    <h1 th:text="#{layout.title}">Title</h1>
 </header>
 
 <footer th:fragment="footer">
-    <p>All Rights Reserved <a href="https://www.google.com" target="_blank">GlobalMentoring.com.mx</a> </p>
+    <div>
+        <br />
+        <a th:href="@{/(lang=en)}">EN</a> |
+        <a th:href="@{/(lang=es)}">ES</a> |
+        <span>[[ #{layout.footer} ]] <a href="https://www.google.com" target="_blank">&copy;GlobalMentoring.com.mx</a></span>
+    </div>
 </footer>
 </body>
 </html>

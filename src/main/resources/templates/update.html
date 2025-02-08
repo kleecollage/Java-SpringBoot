@@ -2,32 +2,32 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8" />
-    <title>Person Info</title>
+    <title th:text="#{form.title}"></title>
 </head>
 <body>
 <header th:replace="layout/layout :: header"></header>
-<h2>Person Information</h2>
-<a th:href="@{/}">Go Back</a>
+<h2 th:text="#{form.title}"></h2>
+<a th:href="@{/}" th:text="#{link.return}"></a>
 <br />
 <form th:action="@{/save}" method="post" th:object="${person}">
     <input type="hidden" th:field="*{idPerson}" />
-    <label for="name">Name: </label>
+    <label for="name">[[ #{person.name} ]]: </label>
     <input type="text" id="name" name="name" th:field="*{name}" />
-    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}">This field must not be empty</span>
+    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}">VALIDATION MESSAGE</span>
     <br />
-    <label for="surname">Surname: </label>
+    <label for="surname">[[ #{person.surname} ]]: </label>
     <input type="text" id="surname" name="surname" th:field="*{surname}" />
-    <span th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}">This field must not be empty</span>
+    <span th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}">VALIDATION MESSAGE</span>
     <br />
-    <label for="email">Email: </label>
+    <label for="email">[[ #{person.email} ]]: </label>
     <input type="email" id="email" name="email" th:field="*{email}" />
-    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">This field must not be empty</span>
+    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">VALIDATION MESSAGE</span>
     <br />
-    <label for="phone">Phone: </label>
+    <label for="phone">[[ #{person.phone} ]]: </label>
     <input type="tel" id="phone" name="phone" th:field="*{phone}" />
-    <span th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">This field must not be empty</span>
+    <span th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">VALIDATION MESSAGE</span>
     <br />
-    <input type="submit" name="submit" value="Submit" />
+    <input type="submit" name="submit" th:value="#{action.submit}" />
 </form>
 <footer th:replace="layout/layout :: footer"></footer>
 </body>

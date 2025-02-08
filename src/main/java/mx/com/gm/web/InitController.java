@@ -12,6 +12,8 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.ArrayList;
+
 @Controller
 @Slf4j
 public class InitController {
@@ -25,6 +27,7 @@ public class InitController {
     public String init(Model model) {
         log.info("Executing Controller Spring MVC");
         var persons = personService.listPersons();
+        // var persons = new ArrayList<Person>();
         model.addAttribute("persons", persons);
 
         return "index";

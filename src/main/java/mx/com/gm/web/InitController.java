@@ -44,8 +44,8 @@ public class InitController {
     }
 
     @GetMapping("/edit/{idPerson}")
-    public String edit(@Valid Person person, Model model, Errors errors) {
-        if (errors.hasErrors()) return "update";
+    public String edit(Person person, Model model) {
+        // if (errors.hasErrors()) return "update";
 
         person = personService.findPerson(person);
         model.addAttribute("person", person);

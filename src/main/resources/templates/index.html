@@ -9,6 +9,7 @@
 <p th:text="${message}"></p>
 <p th:text="${greetings}"></p>
 <br />
+<div th:if="${persons != null and !persons.empty}">
 <table border="1">
     <tr>
         <th>Name</th>
@@ -19,9 +20,13 @@
     <tr th:each="person : ${persons}">
         <td th:text="${person.name}"></td>
         <td th:text="${person.surname}"></td>
-        <td th:text="${person.email}"></td>
+        <td th:text="${person.email}">empty</td>
         <td th:text="${person.phone}"></td>
     </tr>
 </table>
+</div>
+<div th:if="${persons == null or persons.empty}">
+    The list is empty
+</div>
 </body>
 </html>

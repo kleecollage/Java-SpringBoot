@@ -39,6 +39,7 @@ public class InitController {
         // persons.add(person2);
 
         // PRO METHOD //
+        // var persons = new ArrayList<>();
         var persons = Arrays.asList(person, person2);
 
         log.info("Executing Controller Spring MVC");

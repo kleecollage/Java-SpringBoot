@@ -1,17 +1,16 @@
 package mx.com.gm;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 
+@Controller
 @Slf4j
-@RestController
 public class InitController {
 
     @GetMapping("/")
     public String init() {
-        log.info("Execute Init Controller");
-        log.debug("More information about the controller");
-        return "Hello World with Spring Boot!";
+        log.info("Executing Controller Spring MVC");
+        return "index";
     }
 }

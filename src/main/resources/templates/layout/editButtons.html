@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" >
+<head th:replace="layout/layout :: head">
+    <title>Edit Buttons</title>
+</head>
+<body>
+<section th:fragment="editButtons">
+    <div id="actions" class="py-4 mb-4 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <a class="btn btn-light w-100" th:href="@{/}">
+                        <i class="fas fa-arrow-left"></i> [[#{link.return}]]
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <button type="submit" class="btn btn-success w-100" th:href="@{/save}">
+                        <i class="fas fa-check"></i> [[#{action.submit}]]
+                    </button>
+                </div>
+                <div class="col-md-3">
+                    <a class="btn btn-danger w-100" th:href="@{/delete(idPerson=${person.idPerson})}">
+                        <i class="fas fa-trash"></i> [[#{action.delete}]]
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

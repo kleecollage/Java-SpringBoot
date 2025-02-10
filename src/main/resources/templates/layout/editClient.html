@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" >
+<head th:replace="layout/layout :: head">
+    <title>Edit Client</title>
+</head>
+<body>
+<section th:fragment="editClient">
+    <!--/*@thymesVar id="person" type="mx.com.gm.domain.Person"*/-->
+    <form th:action="@{/save}" th:object="${person}" class="was-validated" method="post">
+        <input type="hidden" name="idPerson" th:field="*{idPerson}"/>
+        <section th:replace="layout/editButtons :: editButtons"></section>
+        <div id="details">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>[[#{action.edit}]]</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="name">[[${person.name}]]</label>
+                                    <input type="text" class="form-control" id="name" th:field="*{name}" required/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="surname">[[${person.surname}]]</label>
+                                    <input type="text" class="form-control" id="surname" th:field="*{surname}" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">[[${person.email}]]</label>
+                                    <input type="text" class="form-control" id="email" th:field="*{email}" required/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">[[${person.phone}]]</label>
+                                    <input type="text" class="form-control" id="phone" th:field="*{phone}" required/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="balance">[[${person.balance}]]</label>
+                                    <input type="number" step="any" class="form-control" id="balance" th:field="*{balance}" required/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
+</body>
+</html>

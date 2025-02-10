@@ -3,16 +3,12 @@
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security" >
-<head>
-    <meta charset="UTF-8" />
+<head th:replace="layout/layout :: head">
     <title th:text="#{form.title}"></title>
 </head>
 <body>
 <header th:replace="layout/layout :: header"></header>
 <section th:replace="layout/editClient :: editClient"></section>
 <footer th:replace="layout/layout :: footer"></footer>
-<h2 th:text="#{form.title}"></h2>
-<a th:href="@{/}" th:text="#{link.return}"></a>
-<br />
 </body>
 </html>

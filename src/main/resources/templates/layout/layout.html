@@ -1,26 +1,73 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
+<head th:fragment="head">
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/6.5.1/css/all.min.css}">
+    <script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js}"></script>
+    <!--  THESE ARE INCLUDED IN BOOTSTRAP V5 (bootstrap.bundle.min.js)  -->
+    <!--    <script th:src="@{/webjars/jquery/3.3.1/jquery.min.js}"></script>-->
+    <!--    <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>-->
     <title>Layout</title>
 </head>
 <body>
 <header th:fragment="header">
-    <h1 th:text="#{layout.title}">Title</h1>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
+        <div class="container">
+            <a th:href="@{/}" class="navbar-brand" th:text="#{layout.title}">CLIENTS CONTROL</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav">
+                    <li class="nav-item px-2">
+                        <a th:href="@{/}" class="nav-link active" th:text="#{bar.title}">HOME</a>
+                    </li>
+                </ul>
+                <ul sec:authorize="isAuthenticated()" class="navbar-nav ms-auto">
+                    <li class="nav-item me-3">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-user"></i>
+                            <span th:text="#{bar.welcome}">WELCOME</span>
+                            <span sec:authentication="name">USERNAME</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <form th:action="@{/logout}" method="post">
+                            <a href="#" onclick="this.parentNode.submit();" class="nav-link">
+                                <i class="fas fa-user-times"></i> [[ #{bar.logout} ]]
+                            </a>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section id="main-header" class="py-2 bg-info text-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h1>
+                        <i class="fas fa-cog"></i>[[#{layout.title}]]
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </section>
 </header>
 
-<footer th:fragment="footer">
-    <div>
-        <br />
-        <a th:href="@{/(lang=en)}">EN</a> |
-        <a th:href="@{/(lang=es)}">ES</a> |
-        <span>[[ #{layout.footer} ]] <a href="https://www.google.com" target="_blank">&copy;GlobalMentoring.com.mx</a></span>
-        <form method="post" th:action="@{/logout}">
-            <b>User: </b> <span sec:authentication="name">USERNAME LOGGED</span> |
-            <b>Roles: </b> <span sec:authentication="principal.authorities">ROLES</span>|
-            <a href="#" onclick="this.parentNode.submit()">Logout</a>
-        </form>
+<footer th:fragment="footer" class="bg-warning text-white mt-5 p-5">
+    <div class="container">
+        <div class="col">
+            <p class="lead text-center">
+                <a th:href="@{/(lang=en)}">EN</a> |
+                <a th:href="@{/(lang=es)}">ES</a> |
+                <span>[[ #{layout.footer} ]] <a href="https://www.google.com" target="_blank"> &copy;GlobalMentoring.com.mx</a></span>
+                <!-- <b>User: </b> <span sec:authentication="name">USERNAME LOGGED</span> | -->
+                <!-- <b>Roles: </b> <span sec:authentication="principal.authorities">ROLES</span>| -->
+            </p>
+        </div>
     </div>
 </footer>
 </body>

@@ -28,6 +28,7 @@ public class SecurityConfig{
     protected SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authorize -> authorize
+                    .requestMatchers("/webjars/**", "/css/**", "/js/**", "/images/**").permitAll() // permit access to static resources
                     .requestMatchers("/edit/**", "/add/**", "/delete").hasRole("ADMIN")
                     .requestMatchers("/").hasAnyRole("USER", "ADMIN")
                     .anyRequest().authenticated()

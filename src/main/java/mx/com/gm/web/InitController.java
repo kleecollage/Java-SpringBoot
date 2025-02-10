@@ -27,7 +27,6 @@ public class InitController {
     public String init(Model model, @AuthenticationPrincipal User user) {
         log.info("Executing Controller Spring MVC");
         log.info("User Logged: {}", user);
-
         var persons = personService.listPersons();
         // var persons = new ArrayList<Person>();
         model.addAttribute("persons", persons);

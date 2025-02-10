@@ -7,38 +7,9 @@
 <header th:replace="layout/layout :: header"></header>
 
 <section th:replace="layout/addButtons :: addButtons "></section>
-<!--<section th:replace="layout/addClient :: addClient "></section>-->
-<!--<section th:replace="layout/listClients :: listClients "></section>-->
+<section th:replace="layout/addClient :: addClient "></section>
+<section th:replace="layout/listClients :: listClients "></section>
 
 <footer th:replace="layout/layout :: footer"></footer>
-
-
-<a sec:authorize="hasRole('ROLE_ADMIN')"  th:href="@{/add}" th:text="#{person.add}">CREATE PERSON</a> <hr />
-<div th:if="${persons != null and !persons.empty}">
-<table border="1">
-    <tr>
-        <th th:text="#{person.name}"></th>
-        <th th:text="#{person.surname}"></th>
-        <th th:text="#{person.email}"></th>
-        <th th:text="#{person.phone}"></th>
-        <th th:text="#{form.actions}" sec:authorize="hasRole('ROLE_ADMIN')" ></th>
-    </tr>
-    <tr th:each="person : ${persons}">
-        <td th:text="${person.name}"></td>
-        <td th:text="${person.surname}"></td>
-        <td th:text="${person.email}"></td>
-        <td th:text="${person.phone}"></td>
-        <td sec:authorize="hasRole('ROLE_ADMIN')" >
-            <!--     PARAMETER CONCATENATION       -->
-            <a th:href="@{/edit/} + ${person.idPerson}" th:text="#{action.edit}">EDITION</a> |
-            <!--     QUERY PARAMETER       -->
-            <a th:href="@{/delete(idPerson=${person.idPerson})}" th:text="#{action.delete}">DELETE</a>
-        </td>
-    </tr>
-</table>
-</div>
-<div th:if="${persons == null or persons.empty}" th:text="#{form.empty}">
-    EMPTY LIST
-</div>
 </body>
 </html>

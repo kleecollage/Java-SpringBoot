@@ -25,11 +25,18 @@ public class InitController {
 
     @GetMapping("/")
     public String init(Model model, @AuthenticationPrincipal User user) {
-        log.info("Executing Controller Spring MVC");
-        log.info("User Logged: {}", user);
         var persons = personService.listPersons();
         // var persons = new ArrayList<Person>();
+        log.info("Executing Controller Spring MVC");
+        log.info("User Logged: {}", user);
         model.addAttribute("persons", persons);
+
+        var totalBalance = 0D;
+        for (var p : persons) {
+            totalBalance += p.getBalance();
+        }
+        model.addAttribute("totalBalance", totalBalance);
+        model.addAttribute("totalClients", persons.size());
 
         return "index";
     }

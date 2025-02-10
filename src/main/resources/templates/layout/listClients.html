@@ -1,10 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" >
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>List Clients</title>
 </head>
 <body>
-
+<section th:fragment="listClients" id="clients">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">[[#{form.title-list}]]</h4>
+                    </div>
+                    <div th:if="${persons == null or persons.empty}">
+                        <span th:text="#{form.empty}">THE LIST IS EMPTY</span>
+                    </div>
+                    <div th:if="${persons != null and !persons.empty}">
+                        <table class="table table-striped">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th>#</th>
+                                <th th:text="#{person.name}"></th>
+                                <th th:text="#{person.email}"></th>
+                                <th th:text="#{person.phone}"></th>
+                                <th th:text="#{person.balance}"></th>
+                                <th th:text="#{form.actions}" sec:authorize="hasRole('ROLE_ADMIN')" ></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="person, counter : ${persons}">
+                                <td>[[${counter.count}]]</td>
+                                <td>[[${person.name}]] [[${person.surname}]] </td>
+                                <td th:text="${person.email}"></td>
+                                <td th:text="${person.phone}"></td>
+                                <td th:text="'$' + ${#numbers.formatDecimal(person.balance, 1, 'COMMA', 2, 'POINT')}"></td>
+                                <td sec:authorize="hasRole('ROLE_ADMIN')" >
+                                    <!--     PARAMETER CONCATENATION       -->
+                                    <a th:href="@{/edit/} + ${person.idPerson}" class="btn btn-secondary m-1">
+                                        <i class="fas fa-angle-double-right"></i> [[#{action.edit}]]
+                                    </a>
+                                    <!--     QUERY PARAMETER       -->
+                                    <a th:href="@{/delete(idPerson=${person.idPerson})}" class="btn btn-danger">
+                                        <i class="fas fa-trash"></i>[[#{action.delete}]]
+                                    </a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-center bg-danger text-white mb-3">
+                    <div class="card-body">
+                        <h3 th:text="#{person.totalBalance}">TOTAL BALANCE</h3>
+                        <h4 class="display-4">$ [[${#numbers.formatDecimal(totalBalance, 1, 'COMMA', 2, 'POINT')}]]</h4>
+                    </div>
+                </div>
+                <div class="card text-center bg-success text-white mb-3">
+                    <div class="card-body">
+                        <h3 th:text="#{person.totalClients}">TOTAL CUSTOMERS</h3>
+                        <h4 class="display-4">
+                            <i class="fas fa-users"></i> [[${totalClients}]]
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 </body>
 </html>

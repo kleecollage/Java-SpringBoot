@@ -36,7 +36,7 @@
                     <li class="nav-item">
                         <form th:action="@{/logout}" method="post">
                             <a href="#" onclick="this.parentNode.submit();" class="nav-link">
-                                <i class="fas fa-user-times"></i> [[ #{bar.logout} ]]
+                                <i class="fas fa-user-times"></i> [[#{bar.logout}]]
                             </a>
                         </form>
                     </li>
@@ -49,7 +49,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <h1>
-                        <i class="fas fa-cog"></i>[[#{layout.title}]]
+                        <i class="fas fa-cog"></i> [[#{layout.title}]]
                     </h1>
                 </div>
             </div>
@@ -63,12 +63,14 @@
             <p class="lead text-center">
                 <a th:href="@{/(lang=en)}">EN</a> |
                 <a th:href="@{/(lang=es)}">ES</a> |
-                <span>[[ #{layout.footer} ]] <a href="https://www.google.com" target="_blank"> &copy;GlobalMentoring.com.mx</a></span>
+                <span>[[#{layout.footer}]] <a href="https://www.google.com" target="_blank"> &copy;GlobalMentoring.com.mx</a></span>
                 <!-- <b>User: </b> <span sec:authentication="name">USERNAME LOGGED</span> | -->
                 <!-- <b>Roles: </b> <span sec:authentication="principal.authorities">ROLES</span>| -->
             </p>
         </div>
     </div>
 </footer>
+
+<!--<script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js}"></script>-->
 </body>
 </html>

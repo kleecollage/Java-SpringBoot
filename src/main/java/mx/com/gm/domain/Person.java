@@ -4,6 +4,7 @@ package mx.com.gm.domain;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.io.Serial;
@@ -31,4 +32,7 @@ public class Person implements Serializable {
 
     @NotEmpty
     private String phone;
+
+    @NotNull
+    private Double balance;
 }

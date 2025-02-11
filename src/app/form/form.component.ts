@@ -39,5 +39,13 @@ export class FormComponent implements OnInit {
     this.router.navigate(['people']);
   }
 
+  onDeletePerson() {
+    if (this.idPerson != null) {
+      console.log('Person to remove: ' + this.idPerson);
+      this.personService.deletePerson(this.idPerson)
+    }
+    this.router.navigate(['people'])
+  }
+
 
 }

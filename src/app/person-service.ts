@@ -42,6 +42,15 @@ export class PersonService {
 
   updatePerson(id: number, person: Person) {
     console.log('Person to update: ' + person.idPerson);
+    // To update Person object from array //
+    const personUpdatedLocal = this.people.find(person => person.idPerson == id);
+
+    if (personUpdatedLocal) {
+      personUpdatedLocal.idPerson = person.idPerson;
+      personUpdatedLocal.name = person.name;
+    } else console.error('Person not found');
+
+    // save person on DB
     this.dataService.updatePerson(id, person);
   }
 

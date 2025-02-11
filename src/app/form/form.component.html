@@ -1,0 +1,6 @@
+<div class="box">
+  <form action="" class="item" #f="ngForm" (ngSubmit)="f.form.valid && onSavePerson()">
+    <input type="text" name="name" id="name" placeholder="Name" [(ngModel)]="nameInput" required />
+    <button type="submit" style="cursor: pointer;">+</button>
+  </form>
+</div>
